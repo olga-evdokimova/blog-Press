@@ -515,7 +515,7 @@ strong {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .sidebar-item__title {
     width: 100%;
     margin-bottom: auto;
@@ -791,10 +791,6 @@ strong {
   .content p {
     margin-bottom: 15px;
   }
-}
-.content strong {
-  display: inline-block;
-  padding-bottom: 10px;
 }
 .content__img {
   max-width: 800px;

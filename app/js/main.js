@@ -7,7 +7,99 @@
   \*******************************/
 /***/ (() => {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\my Documents\\projects\\blog PG\\src\\js\\_components.js: Unexpected token (4:0)\n\n\u001b[0m \u001b[90m 2 |\u001b[39m \u001b[36mconst\u001b[39m winHeight \u001b[33m=\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 3 |\u001b[39m     \u001b[36mconst\u001b[39m footer \u001b[33m=\u001b[39m document\u001b[33m.\u001b[39mquerySelector(\u001b[32m'.footer'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 |\u001b[39m \u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m   |\u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 5 |\u001b[39m     \u001b[36mconst\u001b[39m header \u001b[33m=\u001b[39m document\u001b[33m.\u001b[39mquerySelector(\u001b[32m'.header'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 6 |\u001b[39m     \u001b[36mconst\u001b[39m sidebarItems \u001b[33m=\u001b[39m document\u001b[33m.\u001b[39mquerySelector(\u001b[32m'.sidebar__items'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 7 |\u001b[39m     \u001b[36mconst\u001b[39m headerHeight \u001b[33m=\u001b[39m header\u001b[33m.\u001b[39moffsetHeight\u001b[33m;\u001b[39m\u001b[0m\n    at Parser._raise (C:\\my Documents\\projects\\blog PG\\node_modules\\@babel\\parser\\lib\\index.js:506:17)\n    at Parser.raiseWithData (C:\\my Documents\\projects\\blog PG\\node_modules\\@babel\\parser\\lib\\index.js:499:17)\n    at Parser.raise (C:\\my Documents\\projects\\blog PG\\node_modules\\@babel\\parser\\lib\\index.js:460:17)\n    at Parser.unexpected (C:\\my Documents\\projects\\blog PG\\node_modules\\@babel\\parser\\lib\\index.js:3699:16)\n    at Parser.parseExprAtom (C:\\my Documents\\projects\\blog PG\\node_modules\\@babel\\parser\\lib\\index.js:12461:22)\n    at Parser.parseExprSubscripts (C:\\my Documents\\projects\\blog PG\\node_modules\\@babel\\parser\\lib\\index.js:11999:23)\n    at Parser.parseUpdate (C:\\my Documents\\projects\\blog PG\\node_modules\\@babel\\parser\\lib\\index.js:11979:21)\n    at Parser.parseMaybeUnary (C:\\my Documents\\projects\\blog PG\\node_modules\\@babel\\parser\\lib\\index.js:11954:23)\n    at Parser.parseMaybeUnaryOrPrivate (C:\\my Documents\\projects\\blog PG\\node_modules\\@babel\\parser\\lib\\index.js:11751:61)\n    at Parser.parseExprOps (C:\\my Documents\\projects\\blog PG\\node_modules\\@babel\\parser\\lib\\index.js:11758:23)");
+//Высота sidebar__items минус высота header и footer ==============================
+var winHeight = function winHeight() {
+  var footer = document.querySelector('.footer');
+  var header = document.querySelector('.header');
+  var sidebarItems = document.querySelector('.sidebar__items');
+  var headerHeight = header.offsetHeight;
+  var footerHeight = footer.offsetHeight;
+  var win = window.innerHeight;
+  var heightSidebarItems = win - headerHeight - footerHeight;
+  sidebarItems.style.height = "".concat(heightSidebarItems, "px");
+};
+
+winHeight(); //=========================================================================
+//На  @media (max-width: 768px) открыть контент по клику на элемент сайтбара , закрыть контент по кнопке "< назад"================================
+
+var openContent = function openContent() {
+  var sidebarItem = document.querySelectorAll('.sidebar-item');
+  var contentLink = document.querySelector('.content__link');
+  sidebarItem.forEach(function (item) {
+    var content = document.querySelector('.content');
+    var contentInner = document.querySelector('.content__inner');
+    item.addEventListener('click', function () {
+      content.classList.toggle('open');
+      contentInner.classList.toggle('open');
+    });
+    contentLink.addEventListener('click', function () {
+      content.classList.remove('open');
+      contentInner.classList.remove('open');
+    });
+  });
+};
+
+openContent(); //Анимация текста при загрузке страницы================================================
+
+var animText = document.querySelectorAll('.anim-text');
+var anim = document.querySelectorAll('.anim');
+var animMenu = document.querySelectorAll('.anim-menu');
+
+window.onload = function () {
+  animText.forEach(function (item) {
+    return item.classList.add('visible-text');
+  });
+  anim.forEach(function (item) {
+    return item.classList.add('visible');
+  });
+  animMenu.forEach(function (item) {
+    return item.classList.add('visible-menu');
+  });
+}; //==============================
+// Создаем медиа условие, проверяющее viewports на ширину не менее 768 пикселей.
+
+
+var mediaQuery = window.matchMedia('(min-width: 768px)');
+
+if (mediaQuery.matches) {
+  var header = function header() {
+    var header = document.querySelector('.header');
+    var sidebar = document.querySelector('.sidebar');
+    var lastScrollTop = 0;
+
+    var open = function open() {
+      header.classList.add("header-open");
+      header.classList.remove('header-close');
+      sidebar.style.paddingTop = "";
+    };
+
+    var close = function close() {
+      header.classList.add("header-close");
+      header.classList.remove('header-open');
+      sidebar.style.paddingTop = "0px";
+    };
+
+    window.addEventListener('scroll', function (event) {
+      var scrollDistance = window.scrollY;
+      var scrollDown = scrollDistance > lastScrollTop;
+      var heightScrill = scrollY;
+
+      if (scrollDown) {
+        if (heightScrill > 100) {
+          close();
+        }
+      } else {
+        open();
+      }
+
+      lastScrollTop = scrollDistance;
+    });
+  };
+
+  header();
+} else {
+  console.log('ничего');
+}
 
 /***/ }),
 

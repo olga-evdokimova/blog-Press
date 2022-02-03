@@ -1,7 +1,6 @@
 //Высота sidebar__items минус высота header и footer ==============================
 const winHeight = () => {
     const footer = document.querySelector('.footer');
-<<<<<<< HEAD
     const header = document.querySelector('.header');
     const sidebarItems = document.querySelector('.sidebar__items');
     const headerHeight = header.offsetHeight;
@@ -11,17 +10,6 @@ const winHeight = () => {
 
     sidebarItems.style.height = `${heightSidebarItems}px`;
     
-=======
-    const header = document.querySelector('.header')
-    //const headerHeight = header.offsetHeight;
-    const footerHeight = footer.offsetHeight;
-    const win = window.innerHeight;
-    const sidebarItems = document.querySelector('.sidebar__items');
-    const winHeight = String(win - footerHeight);
-    
-    sidebarItems.style.height = winHeight + "px";
-
->>>>>>> master
 }
 winHeight();
 
@@ -72,21 +60,11 @@ if (mediaQuery.matches) {
         let lastScrollTop = 0;
 
 
-<<<<<<< HEAD
         const open = () => {
             header.classList.add("header-open");
             header.classList.remove('header-close');
             sidebar.style.paddingTop = "";
         }
-=======
-    const close = () => {
-        header.classList.add("header-close");
-        header.classList.remove('header-open');
-        sidebar.style.paddingTop = String(0) + "px";
-
-
-    }
->>>>>>> master
 
         const close = () => {
             header.classList.add("header-close");
