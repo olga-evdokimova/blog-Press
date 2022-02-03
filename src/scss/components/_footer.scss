@@ -1,0 +1,31 @@
+.footer {
+    width: 100%;
+    // position: fixed;
+    // bottom: 0;
+    // z-index: 2;
+    background-color: var(--color);
+    &__inner {
+        display: flex;
+        align-items: center;
+        height: 90px;
+        @media (max-width: 768px){
+            height: 60px;
+        }
+    }
+    &__copy {
+        color: var(--bg);
+        white-space: nowrap;
+        padding-right: 20px;
+    }
+    &__info {
+        a {
+            color: var(--line);
+            font-size: 10px;
+            line-height: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+}

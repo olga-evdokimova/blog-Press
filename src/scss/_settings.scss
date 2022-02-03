@@ -1,0 +1,139 @@
+// мои настройки==========================
+//<Шрифт по умолчанию>==========================================================================================
+body {
+    font-family: "Manrope-Light";
+    font-size: 16px;
+    color: var(--color-text);
+}
+//<>============================================================================
+//Стилизация скролла для Mozilla Firefox
+// html,
+// body {
+//     scrollbar-color: var(--color) var(--bg); /* «цвет ползунка» «цвет полосы скроллбара» */
+//     scrollbar-width: thin; /* толщина */
+// }
+
+//Скролбар для Google Chrome, Яндекс.Браузер, Safari и Opera
+/* полоса прокрутки (скроллбар) */
+::-webkit-scrollbar {
+    width: 4px; /* ширина для вертикального скролла */
+}
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+    background-color: var(--color);
+}
+//<ОБОЛОЧКА>===========================================================================================================
+.wrapper {
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+//<ОСНОВНАЯ СЕТКА>=================================
+.container {
+    max-width: 1330px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+//<ОСНОВНОЙ БЛОК>====================================================================================================
+.page {
+    flex: 1 1 auto;
+}
+//<ОБЩИЕ СТИЛИ>================================================================================================
+h1 {
+    font-family: var(--font-Light);
+    font-weight: 300;
+    line-height: 1.5;
+    font-size: 26px;
+}
+h2 {
+    font-family: var(--font-SemiBold);
+    font-weight: 600;
+    line-height: 1.5;
+    font-size: 26px;
+    @media (max-width: 768px) {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1,
+    h2 {
+        line-height: 1.2;
+    }
+}
+p {
+    margin-bottom: 25px;
+    color: var(--color-text);
+    font-family: var(--font-Medium);
+}
+a {
+    color: var(--color);
+    font-family: var(--font-SemiBold);
+}
+strong {
+    display: inline-block;
+    padding-bottom: 10px;
+    font-family: var(--font-Medium);
+}
+//Анимация ============================================
+.invisible-text {
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(0px, 50%);
+    transition: opacity 1.8s ease 0.5s, transform 1.8s ease 0.5s;
+}
+.visible-text {
+    opacity: 1;
+    transform: translate(0px, 0px);
+    visibility: visible;
+    transition: opacity 1.8s ease 0.5s, transform 1.8s ease 0.5s;
+}
+.invisible {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.8s ease 0.8s;
+}
+.visible {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.8s ease 0.8s;
+}
+.invisible-menu {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-50px);
+    transition: opacity 1.8s ease 0.5s, transform 1.8s ease 0.5s;
+}
+.visible-menu {
+    opacity: 1;
+    transform: translateY(0px);
+    visibility: visible;
+    transition: opacity 1.8s ease 0.5s, transform 1.8s ease 0.5s;
+}
+
+//<>================================================================================================
+// .asd { //ссылка на всех устройствах
+//     display: block;
+//     width: 200px;
+//     height: 200px;
+//     margin: 200px auto;
+//     background-color: red;
+
+//     transition: all 0.3s ease 0s;
+// ====== мышь, тачпад=====
+//     @media (any-hover: hover) and (any-pointer: fine) {
+//         &:hover, &:focus{
+//             transition: all 0.3s ease 0s;
+//             background-color: blue;
+//         }
+//     }
+//     @media (max-width: 1025px) {
+//         &:focus {
+//             transition: all 0.3s ease 0s;
+//             background-color: orange;
+//         }
+//     }
+// }
