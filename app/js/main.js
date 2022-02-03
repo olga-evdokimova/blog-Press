@@ -97,9 +97,7 @@ if (mediaQuery.matches) {
   };
 
   header();
-} else {
-  console.log('ничего');
-}
+} else {}
 
 /***/ }),
 
