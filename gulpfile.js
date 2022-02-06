@@ -248,7 +248,7 @@ const toProd = (done) => {
   isProd = true;
   done();
 };
-const gulp = require('gulp');
+
 const ghPages = require('gulp-gh-pages');
 
 gulp.task('deploy', function () {
