@@ -8,20 +8,19 @@
 /***/ (() => {
 
 //Высота sidebar__items минус высота header и footer ==============================
-var winHeight = function winHeight() {
-  var footer = document.querySelector('.footer');
-  var header = document.querySelector('.header');
-  var sidebarItems = document.querySelector('.sidebar__items');
-  var headerHeight = header.offsetHeight;
-  var footerHeight = footer.offsetHeight;
-  var win = window.innerHeight;
-  var heightSidebarItems = win - headerHeight - footerHeight;
-  sidebarItems.style.height = "".concat(heightSidebarItems, "px");
-};
-
-winHeight(); //=========================================================================
+// const winHeight = () => {
+//     const footer = document.querySelector('.footer');
+//     const header = document.querySelector('.header');
+//     const sidebarItems = document.querySelector('.sidebar__items');
+//     const headerHeight = header.offsetHeight;
+//     const footerHeight = footer.offsetHeight;
+//     const win = window.innerHeight;
+//     const heightSidebarItems = win - headerHeight - footerHeight;
+//     sidebarItems.style.height = `${heightSidebarItems}px`;
+// }
+// winHeight();
+//=========================================================================
 //На  @media (max-width: 768px) открыть контент по клику на элемент сайтбара , закрыть контент по кнопке "< назад"================================
-
 var openContent = function openContent() {
   var sidebarItem = document.querySelectorAll('.sidebar-item');
   var contentLink = document.querySelector('.content__link');
@@ -57,47 +56,62 @@ window.onload = function () {
   });
 }; //==============================
 // Создаем медиа условие, проверяющее viewports на ширину не менее 768 пикселей.
+// const mediaQuery = window.matchMedia('(min-width: 768px)')
+// if (mediaQuery.matches) {
+//     const header = () => {
+//         const header = document.querySelector('.header');
+//         const sidebar = document.querySelector('.sidebar');
+//         let lastScrollTop = 0;
+//         const open = () => {
+//             header.classList.add("header-open");
+//             header.classList.remove('header-close');
+//             sidebar.style.paddingTop = "";
+//         }
+//         const close = () => {
+//             header.classList.add("header-close");
+//             header.classList.remove('header-open');
+//             sidebar.style.paddingTop = `0px`;
+//         }
+//         window.addEventListener('scroll', event => {
+//             let scrollDistance = window.scrollY;
+//             let scrollDown = scrollDistance > lastScrollTop
+//             let heightScrill = scrollY;
+//             if (scrollDown) {
+//                 if (heightScrill > 100) {
+//                     close()
+//                 }
+//             } else {
+//                 open()
+//             }
+//             lastScrollTop = scrollDistance;
+//         });
+//     }
+//     header();
+// } else {
+// }
+//==============================================
 
 
-var mediaQuery = window.matchMedia('(min-width: 768px)');
+var footer = document.querySelector('.footer__inner');
+var footerRect = footer.getBoundingClientRect(); // возвращает размер элемента и его позицию относительно viewport
 
-if (mediaQuery.matches) {
-  var header = function header() {
-    var header = document.querySelector('.header');
-    var sidebar = document.querySelector('.sidebar');
-    var lastScrollTop = 0;
+var sidebarItems = document.querySelector('.sidebar__items');
+var i = 0;
+window.addEventListener("scroll", function () {
+  i++;
+  i = 0;
+  var a = window.scrollY + window.innerHeight; //высота страницы в момент скрола
 
-    var open = function open() {
-      header.classList.add("header-open");
-      header.classList.remove('header-close');
-      sidebar.style.paddingTop = "";
-    };
+  var b = document.body.scrollHeight - footerRect.height; //высота всей страницы  до футера
 
-    var close = function close() {
-      header.classList.add("header-close");
-      header.classList.remove('header-open');
-      sidebar.style.paddingTop = "0px";
-    };
+  var reachedFooter = a >= b; //когда скролл доходит до футера , в sidebar__items добавляем bottom(высота футера)
 
-    window.addEventListener('scroll', function (event) {
-      var scrollDistance = window.scrollY;
-      var scrollDown = scrollDistance > lastScrollTop;
-      var heightScrill = scrollY;
-
-      if (scrollDown) {
-        if (heightScrill > 100) {
-          close();
-        }
-      } else {
-        open();
-      }
-
-      lastScrollTop = scrollDistance;
-    });
-  };
-
-  header();
-} else {}
+  if (reachedFooter) {
+    sidebarItems.style.bottom = "".concat(a - b, "px");
+  } else {
+    sidebarItems.style.bottom = "0px";
+  }
+});
 
 /***/ }),
 

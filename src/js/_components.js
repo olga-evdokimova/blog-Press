@@ -1,17 +1,17 @@
 //Высота sidebar__items минус высота header и footer ==============================
-const winHeight = () => {
-    const footer = document.querySelector('.footer');
-    const header = document.querySelector('.header');
-    const sidebarItems = document.querySelector('.sidebar__items');
-    const headerHeight = header.offsetHeight;
-    const footerHeight = footer.offsetHeight;
-    const win = window.innerHeight;
-    const heightSidebarItems = win - headerHeight - footerHeight;
+// const winHeight = () => {
+//     const footer = document.querySelector('.footer');
+//     const header = document.querySelector('.header');
+//     const sidebarItems = document.querySelector('.sidebar__items');
+//     const headerHeight = header.offsetHeight;
+//     const footerHeight = footer.offsetHeight;
+//     const win = window.innerHeight;
+//     const heightSidebarItems = win - headerHeight - footerHeight;
 
-    sidebarItems.style.height = `${heightSidebarItems}px`;
-    
-}
-winHeight();
+//     sidebarItems.style.height = `${heightSidebarItems}px`;
+
+// }
+// winHeight();
 
 //=========================================================================
 //На  @media (max-width: 768px) открыть контент по клику на элемент сайтбара , закрыть контент по кнопке "< назад"================================
@@ -51,47 +51,68 @@ window.onload = () => {
 //==============================
 
 // Создаем медиа условие, проверяющее viewports на ширину не менее 768 пикселей.
-const mediaQuery = window.matchMedia('(min-width: 768px)')
-if (mediaQuery.matches) {
-    const header = () => {
-        const header = document.querySelector('.header');
-        const sidebar = document.querySelector('.sidebar');
+// const mediaQuery = window.matchMedia('(min-width: 768px)')
+// if (mediaQuery.matches) {
+//     const header = () => {
+//         const header = document.querySelector('.header');
+//         const sidebar = document.querySelector('.sidebar');
 
-        let lastScrollTop = 0;
+//         let lastScrollTop = 0;
 
 
-        const open = () => {
-            header.classList.add("header-open");
-            header.classList.remove('header-close');
-            sidebar.style.paddingTop = "";
-        }
+//         const open = () => {
+//             header.classList.add("header-open");
+//             header.classList.remove('header-close');
+//             sidebar.style.paddingTop = "";
+//         }
 
-        const close = () => {
-            header.classList.add("header-close");
-            header.classList.remove('header-open');
-            sidebar.style.paddingTop = `0px`;
-        }
+//         const close = () => {
+//             header.classList.add("header-close");
+//             header.classList.remove('header-open');
+//             sidebar.style.paddingTop = `0px`;
+//         }
 
-        window.addEventListener('scroll', event => {
-            let scrollDistance = window.scrollY;
-            let scrollDown = scrollDistance > lastScrollTop
-            let heightScrill = scrollY;
+//         window.addEventListener('scroll', event => {
+//             let scrollDistance = window.scrollY;
+//             let scrollDown = scrollDistance > lastScrollTop
+//             let heightScrill = scrollY;
 
-            if (scrollDown) {
-                if (heightScrill > 100) {
-                    close()
-                }
-            } else {
-                open()
-            }
+//             if (scrollDown) {
+//                 if (heightScrill > 100) {
+//                     close()
+//                 }
+//             } else {
+//                 open()
+//             }
 
-            lastScrollTop = scrollDistance;
-        });
+//             lastScrollTop = scrollDistance;
+//         });
+//     }
+//     header();
+// } else {
+
+// }
+
+//==============================================
+
+const footer = document.querySelector('.footer__inner')
+const footerRect = footer.getBoundingClientRect();// возвращает размер элемента и его позицию относительно viewport
+const sidebarItems = document.querySelector('.sidebar__items');
+
+let i = 0
+window.addEventListener("scroll", () => {
+    i++
+    i = 0
+    const a = window.scrollY + window.innerHeight //высота страницы в момент скрола
+    const b = document.body.scrollHeight - footerRect.height //высота всей страницы  до футера
+    const reachedFooter = a >= b
+
+    //когда скролл доходит до футера , в sidebar__items добавляем bottom(высота футера)
+    if (reachedFooter) {
+        sidebarItems.style.bottom = `${a - b}px`
+
+    } else {
+        sidebarItems.style.bottom = "0px"
     }
-    header();
-} else {
-   
-}
 
-
-
+})
