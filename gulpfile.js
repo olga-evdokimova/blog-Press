@@ -249,12 +249,7 @@ const toProd = (done) => {
   done();
 };
 
-const ghPages = require('gulp-gh-pages');
 
-gulp.task('deploy', function () {
-  return gulp.src('./app/**/*')
-    .pipe(ghPages());
-});
 exports.default = series(clean, htmlInclude, scripts, styles, resources, images, webpImages, avifImages, svgSprites, watchFiles);
 
 exports.build = series(toProd, clean, htmlInclude, scripts, styles, resources, images, webpImages, avifImages, svgSprites, htmlMinify);
