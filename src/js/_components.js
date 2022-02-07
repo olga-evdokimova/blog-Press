@@ -8,11 +8,13 @@ const openContent = () => {
         const contentInner = document.querySelector('.content__inner');
 
         item.addEventListener('click', () => {
+            
             content.classList.toggle('open');
             contentInner.classList.toggle('open');
 
         });
         contentLink.addEventListener('click', () => {
+           
             content.classList.remove('open');
             contentInner.classList.remove('open');
 
