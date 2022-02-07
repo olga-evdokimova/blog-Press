@@ -7,18 +7,6 @@
   \*******************************/
 /***/ (() => {
 
-//Высота sidebar__items минус высота header и footer ==============================
-// const winHeight = () => {
-//     const footer = document.querySelector('.footer');
-//     const header = document.querySelector('.header');
-//     const sidebarItems = document.querySelector('.sidebar__items');
-//     const headerHeight = header.offsetHeight;
-//     const footerHeight = footer.offsetHeight;
-//     const win = window.innerHeight;
-//     const heightSidebarItems = win - headerHeight - footerHeight;
-//     sidebarItems.style.height = `${heightSidebarItems}px`;
-// }
-// winHeight();
 //=========================================================================
 //На  @media (max-width: 768px) открыть контент по клику на элемент сайтбара , закрыть контент по кнопке "< назад"================================
 var openContent = function openContent() {
@@ -54,49 +42,13 @@ window.onload = function () {
   animMenu.forEach(function (item) {
     return item.classList.add('visible-menu');
   });
-}; //==============================
-// Создаем медиа условие, проверяющее viewports на ширину не менее 768 пикселей.
-// const mediaQuery = window.matchMedia('(min-width: 768px)')
-// if (mediaQuery.matches) {
-//     const header = () => {
-//         const header = document.querySelector('.header');
-//         const sidebar = document.querySelector('.sidebar');
-//         let lastScrollTop = 0;
-//         const open = () => {
-//             header.classList.add("header-open");
-//             header.classList.remove('header-close');
-//             sidebar.style.paddingTop = "";
-//         }
-//         const close = () => {
-//             header.classList.add("header-close");
-//             header.classList.remove('header-open');
-//             sidebar.style.paddingTop = `0px`;
-//         }
-//         window.addEventListener('scroll', event => {
-//             let scrollDistance = window.scrollY;
-//             let scrollDown = scrollDistance > lastScrollTop
-//             let heightScrill = scrollY;
-//             if (scrollDown) {
-//                 if (heightScrill > 100) {
-//                     close()
-//                 }
-//             } else {
-//                 open()
-//             }
-//             lastScrollTop = scrollDistance;
-//         });
-//     }
-//     header();
-// } else {
-// }
-//==============================================
+}; //==============================================
 
 
 var footer = document.querySelector('.footer__inner');
 var footerRect = footer.getBoundingClientRect(); // возвращает размер элемента и его позицию относительно viewport
 
 var sidebarItems = document.querySelector('.sidebar__items');
-var footerHeight = footer.offsetHeight;
 var i = 0;
 window.addEventListener("scroll", function () {
   i++;
@@ -113,6 +65,7 @@ window.addEventListener("scroll", function () {
     sidebarItems.style.bottom = "0px";
   }
 });
+var footerHeight = footer.offsetHeight;
 var mediaQuery = window.matchMedia('(max-width: 992px)');
 
 if (mediaQuery.matches) {
