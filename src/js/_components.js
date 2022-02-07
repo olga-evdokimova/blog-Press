@@ -98,6 +98,7 @@ window.onload = () => {
 const footer = document.querySelector('.footer__inner')
 const footerRect = footer.getBoundingClientRect();// возвращает размер элемента и его позицию относительно viewport
 const sidebarItems = document.querySelector('.sidebar__items');
+const footerHeight = footer.offsetHeight;
 
 let i = 0
 window.addEventListener("scroll", () => {
@@ -106,7 +107,8 @@ window.addEventListener("scroll", () => {
     const a = window.scrollY + window.innerHeight //высота страницы в момент скрола
     const b = document.body.scrollHeight - footerRect.height //высота всей страницы  до футера
     const reachedFooter = a >= b
-
+   
+  
     //когда скролл доходит до футера , в sidebar__items добавляем bottom(высота футера)
     if (reachedFooter) {
         sidebarItems.style.bottom = `${a - b}px`
@@ -116,3 +118,9 @@ window.addEventListener("scroll", () => {
     }
 
 })
+const mediaQuery = window.matchMedia('(max-width: 992px)')
+if (mediaQuery.matches) {
+    sidebarItems.style.bottom = `${footerHeight}px`
+} else {
+
+}

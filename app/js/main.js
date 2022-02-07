@@ -96,6 +96,7 @@ var footer = document.querySelector('.footer__inner');
 var footerRect = footer.getBoundingClientRect(); // возвращает размер элемента и его позицию относительно viewport
 
 var sidebarItems = document.querySelector('.sidebar__items');
+var footerHeight = footer.offsetHeight;
 var i = 0;
 window.addEventListener("scroll", function () {
   i++;
@@ -112,6 +113,11 @@ window.addEventListener("scroll", function () {
     sidebarItems.style.bottom = "0px";
   }
 });
+var mediaQuery = window.matchMedia('(max-width: 992px)');
+
+if (mediaQuery.matches) {
+  sidebarItems.style.bottom = "".concat(footerHeight, "px");
+} else {}
 
 /***/ }),
 

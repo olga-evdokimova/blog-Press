@@ -14,7 +14,7 @@
     width: 400px;
     z-index: 2;
     @media (max-width: 768px) {
-       // position: inherit;
+        // position: inherit;
         width: 100%;
         top: 40px;
     }
@@ -56,7 +56,6 @@
         @media (max-width: 768px) {
             width: 100%;
             top: 120px;
-           bottom: 60px;
         }
 
         a {
@@ -274,7 +273,7 @@
             top: 40px;
             left: 0;
             margin-left: 0;
-            padding: 0;
+            padding: 0 0 60px;
             z-index: 3;
         }
         @keyframes content {
@@ -305,13 +304,13 @@
     }
     &__inner {
         max-width: 850px;
-        padding: 0 50px 0 0; 
+        padding: 0 50px 0 0;
         @media (max-width: 768px) {
             display: none;
             &.open {
                 display: block;
                 padding: 10px 15px 15px;
-               
+
                 @media (max-width: 480px) {
                     padding-top: 5px;
                 }
@@ -344,6 +343,9 @@
         @media (max-width: 480px) {
             padding: 8px 8px 8px 20px;
             margin-bottom: 5px;
+            &::before {
+                top: 11px;
+            }
         }
     }
     &__title {
@@ -353,7 +355,15 @@
             margin-bottom: 15px;
         }
     }
-
+    a {
+        @media (any-hover: hover) and (any-pointer: fine) {
+            &:hover {
+                text-decoration: underline;
+                transition: all 0.3s ease 0s;
+                
+            }
+        }
+    }
     &__img {
         max-width: 800px;
         position: relative;
@@ -361,34 +371,7 @@
         margin: 40px 0;
         background-color: var(--line);
         overflow: hidden;
-        // &::after {
-        //     content: "";
-        //     position: absolute;
-        //     z-index: 1;
-        //     width: 100%;
-        //     height: 100%;
-        //     background: linear-gradient(
-        //         283deg,
-        //         rgba(229, 229, 229, 1) 0%,
-        //         rgba(255, 255, 255, 0) 12%,
-        //         rgba(255, 255, 255, 0.5634628851540616) 38%,
-        //         rgba(255, 255, 255, 0.8855917366946778) 46%,
-        //         rgba(255, 255, 255, 0.865983893557423) 51%,
-        //         rgba(255, 255, 255, 0.5578606442577031) 58%,
-        //         rgba(255, 255, 255, 0) 86%,
-        //         rgba(229, 229, 229, 1) 100%
-        //     );
-        //     animation: skeleton linear 1.8s infinite 1;
-        // }
-        // /* ключевые кадры */
-        // @keyframes skeleton {
-        //     0% {
-        //         transform: translateX(-100%);
-        //     }
-        //     100% {
-        //         transform: translateX(100%);
-        //     }
-        // }
+       
         img {
             position: absolute;
             top: 0;
