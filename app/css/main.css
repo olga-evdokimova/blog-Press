@@ -235,6 +235,10 @@ strong {
   max-width: 100%;
 }
 
+#__bs_notify__ {
+  display: none !important;
+}
+
 .press {
   display: -webkit-box;
   display: -ms-flexbox;

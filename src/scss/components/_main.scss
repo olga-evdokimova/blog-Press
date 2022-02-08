@@ -1,3 +1,7 @@
+//убрать уведомление от browser-sync
+#__bs_notify__ {
+    display: none !important;
+}
 .press {
     display: flex;
     padding-top: 60px;
