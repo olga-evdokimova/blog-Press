@@ -34,7 +34,7 @@ const plumber = require('gulp-plumber');
 const path = require('path');
 const zip = require('gulp-zip');
 const rootFolder = path.basename(path.resolve());
-
+const ghPages = require('gh-pages');
 // paths
 const srcFolder = './src';
 const buildFolder = './app';
@@ -333,3 +333,7 @@ exports.build = series(toProd, clean, htmlInclude, scripts, styles, resources, i
 exports.cache = series(cache, rewrite);
 
 exports.zip = zipFiles;
+function deploy(cb) {
+  ghPages.publish(path.join(process.cwd(), './app'), cb);
+}
+exports.deploy = deploy;
