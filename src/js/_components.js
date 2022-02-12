@@ -17,7 +17,7 @@ const openContent = () => {
            
             content.classList.remove('open');
             contentInner.classList.remove('open');
-
+            
         })
     });
 
@@ -39,8 +39,8 @@ window.onload = () => {
 const footer = document.querySelector('.footer__inner')
 const footerRect = footer.getBoundingClientRect();// возвращает размер элемента и его позицию относительно viewport
 const sidebarItems = document.querySelector('.sidebar__items');
-
-
+const x = sidebarItems.offsetHeight;
+console.log(x);
 let i = 0
 window.addEventListener("scroll", () => {
     i++
@@ -55,16 +55,17 @@ window.addEventListener("scroll", () => {
         sidebarItems.style.bottom = `${a - b}px`
 
     } else {
-        sidebarItems.style.bottom = "0px"
+        sidebarItems.style.bottom = "0px";
+        
     }
 
 })
 
-const footerHeight = footer.offsetHeight;
-const mediaQuery = window.matchMedia('(max-width: 992px)')
-if (mediaQuery.matches) {
-    sidebarItems.style.bottom = `${footerHeight}px`
-} else {
+// const footerHeight = footer.offsetHeight;
+// const mediaQuery = window.matchMedia('(max-width: 992px)')
+// if (mediaQuery.matches) {
+//     sidebarItems.style.bottom = `${footerHeight}px`
+// } else {
 
-}
+// }
 

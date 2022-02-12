@@ -5,7 +5,8 @@
 .press {
     display: flex;
     padding-top: 60px;
-    background-color: var(--bg-color);
+     background-color: var(--bg-color);
+   
     @media (max-width: 768px) {
         padding-top: 0;
     }
@@ -49,9 +50,10 @@
     }
     &__items {
         width: 400px;
+        padding-bottom: 60px;
         position: fixed;
         top: 160px;
-        bottom: 0;
+        bottom: 0 !important;
         z-index: 5;
         overflow-y: scroll;
         @media (max-width: 992px) {
